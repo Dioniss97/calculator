@@ -1,0 +1,15 @@
+.calculator .display input {
+  width: 2rem;
+}
+
+.calculator .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.calculator .row .cell {
+  background-color: gray;
+  border: .2rem solid black;
+}
+/*# sourceMappingURL=style.css.map */
