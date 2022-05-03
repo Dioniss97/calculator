@@ -2,13 +2,18 @@
     background-color: hsl(0, 0%, 50%);
     border: .2rem solid rgb(138, 138, 138);
     width: 30%;
-    height: 12rem;
+    height: auto;
+
+    .display-container {
+        background-color: white;
+    }
 
     .display {
         background-color: hsl(0, 0%, 100%);
-        display: flex;
+        font-size: 1.6rem;
         padding: 1rem 0;
-        width: 100%;
+        text-align: right;
+        width: 90%;
     }
 
     .row {

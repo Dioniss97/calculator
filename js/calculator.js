@@ -17,7 +17,6 @@
 // En caso de que la última posición de la pantalla sea un número entonces:
 // - hace el calculo y añade el operador pulsado al final
 
-
 let numbers = document.querySelectorAll(".number");
 let operators  = document.querySelectorAll(".operator");
 let calculate =  document.querySelector(".calculate");
@@ -26,12 +25,21 @@ let clear =  document.querySelector(".clear");
 let clearLast =  document.querySelector(".clear-last");
 let display = document.querySelector(".display");
 
+// for (i=0; i < frutas.length; i++) {
+//     frutas[i] = fruta[i];
+// }
+
 numbers.forEach(number => {
 
     number.addEventListener("click", () => {
 
-        display.innerHTML += number.dataset.number;
-        
+        if (display.innerHTML == "0") {
+
+            display.innerHTML = number.dataset.number;
+        }
+        else {
+            display.innerHTML += number.dataset.number;
+        }
     });
 });
 
@@ -39,13 +47,27 @@ operators.forEach(operator => {
 
     operator.addEventListener("click", () => {
 
-        display.innerHTML += operator.dataset.operator;
+        if ((display.innerHTML == "+") || (display.innerHTML == "-") || (display.innerHTML == "x") || (display.innerHTML == "/")) {
 
+            display.innerHTML = operator.dataset.operator;
+        }
+        else {
+
+            display.innerHTML += operator.dataset.operator;
+        }
     });
 });
 
 point.addEventListener("click", () => {
-    display.innerHTML += point.dataset.point;
+
+    if (display.innerHTML == ".") {
+
+        display.innerHTML = point.dataset.point;
+    }
+    else {
+
+        display.innerHTML += point.dataset.point;
+    }
 });
 
 clear.addEventListener("click", () => {
@@ -53,7 +75,10 @@ clear.addEventListener("click", () => {
 });
 
 clearLast.addEventListener("click", () => {
+
+    display.innerHTML = display.splice(display.length, 0);
     // Descubrir una función de js que permita eliminar el último carácter de una cadena de texto
+    // posiblemente "array.splice"
 });
 
 calculate.addEventListener("click", () => {

@@ -484,13 +484,17 @@ a:hover, a:focus {
   background-color: hsl(0deg, 0%, 50%);
   border: 0.2rem solid rgb(138, 138, 138);
   width: 30%;
-  height: 12rem;
+  height: auto;
+}
+.calculator .display-container {
+  background-color: white;
 }
 .calculator .display {
   background-color: hsl(0deg, 0%, 100%);
-  display: flex;
+  font-size: 1.6rem;
   padding: 1rem 0;
-  width: 100%;
+  text-align: right;
+  width: 90%;
 }
 .calculator .row {
   display: flex;
