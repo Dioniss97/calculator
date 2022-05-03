@@ -2,7 +2,7 @@
     background-color: hsl(0, 0%, 50%);
     border: .2rem solid rgb(138, 138, 138);
     width: 30%;
-    height: 11rem;
+    height: 12rem;
 
     .display {
         background-color: hsl(0, 0%, 100%);
@@ -17,7 +17,8 @@
 
         .cell {
             background-color: hsl(0, 0%, 80%);
-            border: .5rem solid rgb(138, 138, 138);
+            border: .2rem solid rgb(0, 0, 0);
+            margin: .4rem;
             width: 100%;
 
             .button {

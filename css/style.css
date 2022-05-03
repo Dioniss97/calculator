@@ -484,7 +484,7 @@ a:hover, a:focus {
   background-color: hsl(0deg, 0%, 50%);
   border: 0.2rem solid rgb(138, 138, 138);
   width: 30%;
-  height: 11rem;
+  height: 12rem;
 }
 .calculator .display {
   background-color: hsl(0deg, 0%, 100%);
@@ -498,7 +498,8 @@ a:hover, a:focus {
 }
 .calculator .row .cell {
   background-color: hsl(0deg, 0%, 80%);
-  border: 0.5rem solid rgb(138, 138, 138);
+  border: 0.2rem solid rgb(0, 0, 0);
+  margin: 0.4rem;
   width: 100%;
 }
 .calculator .row .cell .button {

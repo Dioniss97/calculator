@@ -3,6 +3,6 @@ let display = document.querySelector(".display");
 
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-    display.innerHTML += buttons.dataset.number;
+        display.innerHTML += buttons.dataset.number;
     });
 });
