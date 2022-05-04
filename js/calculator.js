@@ -1,6 +1,6 @@
 // Si pulso un botón de número diferente a cero y en el display hay un cero tiene
 // que sustituirse el cero por el número pulsado. Sino debe sustituirse el valor
-// de la pantalla nuevamente por 0
+// de la pantalla nuevamente por 0.
 
 // Si pulso en borrar el último caracter y sólo queda un caracter en la pantalla se debe
 // sustituir por un cero el valor de la pantalla. Descubir una función de js para contar
@@ -43,11 +43,19 @@ numbers.forEach(number => {
     });
 });
 
-operators.forEach(operator => {
+operators.forEach(operator => {  // Operators tiene la particularidad de que al ser introducido cuando ya se ha pulsado un número o varios y 
+                                // el if (actual) no logra capturar si lo ultimo introducido es un operador. Puesto que compara todos los elementos simultaneamente (creo).
 
     operator.addEventListener("click", () => {
 
-        if ((display.innerHTML == "+") || (display.innerHTML == "-") || (display.innerHTML == "x") || (display.innerHTML == "/")) {
+        // let last = display[display.length -1].innerHTML; // Esta forma no funciona pero representa lo que quiero hacer.
+        // let current = display[display.length -1]; // Al no usar aquí "innerHTML" obviamente no lee lo que hay en el elemento display y logicamente muestra por consola: "undefined".
+        // console.log(last);
+
+        // let current = display.innerHTML; // Debo guardar en una variable string cada valor o operador que se introduce. Quizás puedo crear una función colocando como parametro la tecla pulsada
+        // console.log(current);
+
+        if ((current == "+") /*|| (display[display.length - 1].innerHTML == "-") || (display[display.length - 1].innerHTML == "x") || (display[display.length - 1].innerHTML == "/")*/) {
 
             display.innerHTML = operator.dataset.operator;
         }
@@ -76,9 +84,9 @@ clear.addEventListener("click", () => {
 
 clearLast.addEventListener("click", () => {
 
-    display.innerHTML = display.splice(display.length, 0);
-    // Descubrir una función de js que permita eliminar el último carácter de una cadena de texto
-    // posiblemente "array.splice"
+
+    display.innerHTML = display.innerHTML.slice(0,-1);
+
 });
 
 calculate.addEventListener("click", () => {
