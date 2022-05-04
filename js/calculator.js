@@ -82,7 +82,7 @@ clear.addEventListener("click", () => {
     display.innerHTML = 0;
 });
 
-clearLast.addEventListener("click", () => {
+clearLast.addEventListener("click", () => { // Falta contemplar la excepción en la que solo queda un número en pantalla.
 
 
     display.innerHTML = display.innerHTML.slice(0,-1);
