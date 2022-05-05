@@ -9,13 +9,16 @@
 // Si pulso el boton de punto y no hay ningún operador (osea un "0") en la pantalla sólo puedo escribir un punto. En 
 // cambio si hay un operador en la pantalla entonces sólo puedo escribir dos puntos. Descubrir
 // una función que cuente cuantas veces aparece un caracter en un cadena de texto.
+// Y no solo hay que contar la cantidad de puntos, sino que hay que contarlos de operador en operador,
+// osea que el operador separe cada grupo de cifras para luego controlar que solo exista un punto en cada uno de estos grupos.
+// Descubrir cómo trocear una string en varias strings para luego contar los puntos en cada una con un bucle.
 
 // Si pulso un botón de operador y hay un operador en pantalla.
 // En caso de que el operador de la pantalla sea la última posición entonces:
-// - si son iguales no ocurre nada
-// - si son diferentes se sustituye
+// - si son iguales no ocurre nada.
+// - si son diferentes se sustituye.
 // En caso de que la última posición de la pantalla sea un número entonces:
-// - hace el calculo y añade el operador pulsado al final
+// - hace el calculo y añade el operador pulsado al final.
 
 let numbers = document.querySelectorAll(".number");
 let operators = document.querySelectorAll(".operator");
@@ -101,7 +104,10 @@ point.addEventListener("click", () => {
 
         display.innerHTML = display.innerHTML.slice(0, -1);
         display.innerHTML += point.dataset.point;
+
     } else if (howMuch > 1) {
+            // No sucede nada
+    } else if ((last == "+") || (last == "-") || (last == "x") || (last == "/")) {
             // No sucede nada
     } else {
 
@@ -110,10 +116,11 @@ point.addEventListener("click", () => {
 });
 
 clear.addEventListener("click", () => {
+
     display.innerHTML = "0";
 });
 
-clearLast.addEventListener("click", () => { // Falta contemplar la excepción en la que solo queda un número en pantalla.
+clearLast.addEventListener("click", () => { // Contemplar la excepción en la que solo queda un número en pantalla.
 
     if (display.innerHTML.length > 1) {
 
