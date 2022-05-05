@@ -6,7 +6,7 @@
 // sustituir por un cero el valor de la pantalla. Descubir una función de js para contar
 // el número de caracteres de una cadena de texto.
 
-// Si pulso el boton de punto y no hay ningún operador en la pantalla sólo puedo escribir un punto. En 
+// Si pulso el boton de punto y no hay ningún operador (osea un "0") en la pantalla sólo puedo escribir un punto. En 
 // cambio si hay un operador en la pantalla entonces sólo puedo escribir dos puntos. Descubrir
 // una función que cuente cuantas veces aparece un caracter en un cadena de texto.
 
@@ -28,6 +28,18 @@ let display = document.querySelector(".display");
 // for (i=0; i < frutas.length; i++) {
 //     frutas[i] = fruta[i];
 // }
+
+function cuantasVecesAparece(cadena, caracter) {
+    let cuantas = [];
+    for (let i = 0; i < cadena.length; i++) {
+
+        if (cadena[i].toLowerCase() === caracter) {
+
+            cuantas.push(i);
+        }
+    }
+    return cuantas.length;
+}
 
 numbers.forEach(number => {
 
@@ -59,13 +71,12 @@ operators.forEach(operator => { // Operators tiene la particularidad de que al s
         console.log(last);
         console.log(display.innerHTML.slice(0, -1));
 
-        if (last != operator.dataset.operator) {
+        if ((last == "+") || (last == "-") || (last == "x") || (last == "/")) {
 
+            display.innerHTML = display.innerHTML.slice(0, -1);
             display.innerHTML += operator.dataset.operator;
-        }
-        else {
-            
-            display.innerHTML.slice(0, -1);
+        } else {
+
             display.innerHTML += operator.dataset.operator;
         }
 
@@ -81,9 +92,17 @@ operators.forEach(operator => { // Operators tiene la particularidad de que al s
 
 point.addEventListener("click", () => {
 
-    if (display.innerHTML == ".") {
+    let last = display.innerHTML.charAt(display.innerHTML.length - 1);
 
-        display.innerHTML = point.dataset.point;
+    let howMuch = cuantasVecesAparece(display.innerHTML, point.dataset.point);
+    console.log(cuantasVecesAparece(display.innerHTML, point.dataset.point));
+
+    if (last == ".") {
+
+        display.innerHTML = display.innerHTML.slice(0, -1);
+        display.innerHTML += point.dataset.point;
+    } else if (howMuch > 1) {
+            // No sucede nada
     } else {
 
         display.innerHTML += point.dataset.point;
@@ -99,8 +118,7 @@ clearLast.addEventListener("click", () => { // Falta contemplar la excepción en
     if (display.innerHTML.length > 1) {
 
         display.innerHTML = display.innerHTML.slice(0, -1);
-    } 
-    else {
+    } else {
 
         display.innerHTML = "0";
     }
@@ -108,4 +126,5 @@ clearLast.addEventListener("click", () => { // Falta contemplar la excepción en
 
 calculate.addEventListener("click", () => {
     // Descubrir una función de js para calcular cadena de texto
+    display.innerHTML = eval(display.innerHTML);
 });
