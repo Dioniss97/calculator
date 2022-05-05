@@ -20,6 +20,10 @@
 // En caso de que la última posición de la pantalla sea un número entonces:
 // - hace el calculo y añade el operador pulsado al final.
 
+
+
+// Declaración de variables
+
 let numbers = document.querySelectorAll(".number");
 let operators = document.querySelectorAll(".operator");
 let calculate = document.querySelector(".calculate");
@@ -28,11 +32,8 @@ let clear = document.querySelector(".clear");
 let clearLast = document.querySelector(".clear-last");
 let display = document.querySelector(".display");
 
-// for (i=0; i < frutas.length; i++) {
-//     frutas[i] = fruta[i];
-// }
-
-function cuantasVecesAparece(cadena, caracter) {
+// Función encargada de contar la cantidad de caracteres de la cadena y el caracter que le pases como parametros.
+function howManyAppear(cadena, caracter) {
     let cuantas = [];
     for (let i = 0; i < cadena.length; i++) {
 
@@ -48,26 +49,22 @@ numbers.forEach(number => {
 
     number.addEventListener("click", () => {
 
+        // Aquí se controla que: si (if) hay un "0" en pantalla se sustituya por un numero(number.dataset.number)
+        // y si no (osea el "else") se añada el numero al que ya se muestra.
+
         if (display.innerHTML == "0") {
 
             display.innerHTML = number.dataset.number;
         } else {
+
             display.innerHTML += number.dataset.number;
         }
     });
 });
 
-operators.forEach(operator => { // Operators tiene la particularidad de que al ser introducido cuando ya se ha pulsado un número o varios y 
-    // el if (actual) no logra capturar si lo ultimo introducido es un operador. Puesto que compara todos los elementos simultaneamente (creo).
+operators.forEach(operator => { 
 
     operator.addEventListener("click", () => {
-
-        // let last = display[display.length -1].innerHTML; // Esta forma no funciona pero representa lo que quiero hacer.
-        // let current = display[display.length -1]; // Al no usar aquí "innerHTML" obviamente no lee lo que hay en el elemento display y logicamente muestra por consola: "undefined".
-        // console.log(last);
-
-        // let current = display.innerHTML; // Debo guardar en una variable string cada valor o operador que se introduce. Quizás puedo crear una función colocando como parametro la tecla pulsada
-        // console.log(current);
 
         let last = display.innerHTML.charAt(display.innerHTML.length - 1);
 
@@ -78,18 +75,12 @@ operators.forEach(operator => { // Operators tiene la particularidad de que al s
 
             display.innerHTML = display.innerHTML.slice(0, -1);
             display.innerHTML += operator.dataset.operator;
+
         } else {
 
             display.innerHTML += operator.dataset.operator;
+
         }
-
-        // if () {
-
-        //     display.innerHTML = operator.dataset.operator;
-        // } else {
-
-        //     display.innerHTML += operator.dataset.operator;
-        // }
     });
 });
 
@@ -97,21 +88,22 @@ point.addEventListener("click", () => {
 
     let last = display.innerHTML.charAt(display.innerHTML.length - 1);
 
-    let howMuch = cuantasVecesAparece(display.innerHTML, point.dataset.point);
-    console.log(cuantasVecesAparece(display.innerHTML, point.dataset.point));
+    let howMany = howManyAppear(display.innerHTML, point.dataset.point);
+    console.log(howManyAppear(display.innerHTML, point.dataset.point));
 
     if (last == ".") {
 
         display.innerHTML = display.innerHTML.slice(0, -1);
         display.innerHTML += point.dataset.point;
 
-    } else if (howMuch > 1) {
+    } else if (howMany > 1) {
             // No sucede nada
     } else if ((last == "+") || (last == "-") || (last == "x") || (last == "/")) {
             // No sucede nada
     } else {
 
         display.innerHTML += point.dataset.point;
+
     }
 });
 
@@ -120,7 +112,10 @@ clear.addEventListener("click", () => {
     display.innerHTML = "0";
 });
 
-clearLast.addEventListener("click", () => { // Contemplar la excepción en la que solo queda un número en pantalla.
+clearLast.addEventListener("click", () => { 
+    
+    // Aquí se controla que: si la CANTIDAD de caracteres en pantalla es mayor que 1 se elimine el último caracter introducido
+    // y si solo queda un número en pantalla se muestre un "0".
 
     if (display.innerHTML.length > 1) {
 
@@ -132,6 +127,8 @@ clearLast.addEventListener("click", () => { // Contemplar la excepción en la qu
 });
 
 calculate.addEventListener("click", () => {
-    // Descubrir una función de js para calcular cadena de texto
+
+    // Función de js para calcular la cadena de texto que se muestra en pantalla al darle al botón de igual.
+
     display.innerHTML = eval(display.innerHTML);
 });
