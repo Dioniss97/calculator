@@ -18,11 +18,11 @@
 // - hace el calculo y añade el operador pulsado al final
 
 let numbers = document.querySelectorAll(".number");
-let operators  = document.querySelectorAll(".operator");
-let calculate =  document.querySelector(".calculate");
-let point =  document.querySelector(".point");
-let clear =  document.querySelector(".clear");
-let clearLast =  document.querySelector(".clear-last");
+let operators = document.querySelectorAll(".operator");
+let calculate = document.querySelector(".calculate");
+let point = document.querySelector(".point");
+let clear = document.querySelector(".clear");
+let clearLast = document.querySelector(".clear-last");
 let display = document.querySelector(".display");
 
 // for (i=0; i < frutas.length; i++) {
@@ -36,15 +36,14 @@ numbers.forEach(number => {
         if (display.innerHTML == "0") {
 
             display.innerHTML = number.dataset.number;
-        }
-        else {
+        } else {
             display.innerHTML += number.dataset.number;
         }
     });
 });
 
-operators.forEach(operator => {  // Operators tiene la particularidad de que al ser introducido cuando ya se ha pulsado un número o varios y 
-                                // el if (actual) no logra capturar si lo ultimo introducido es un operador. Puesto que compara todos los elementos simultaneamente (creo).
+operators.forEach(operator => { // Operators tiene la particularidad de que al ser introducido cuando ya se ha pulsado un número o varios y 
+    // el if (actual) no logra capturar si lo ultimo introducido es un operador. Puesto que compara todos los elementos simultaneamente (creo).
 
     operator.addEventListener("click", () => {
 
@@ -55,14 +54,28 @@ operators.forEach(operator => {  // Operators tiene la particularidad de que al 
         // let current = display.innerHTML; // Debo guardar en una variable string cada valor o operador que se introduce. Quizás puedo crear una función colocando como parametro la tecla pulsada
         // console.log(current);
 
-        if ((current == "+") /*|| (display[display.length - 1].innerHTML == "-") || (display[display.length - 1].innerHTML == "x") || (display[display.length - 1].innerHTML == "/")*/) {
+        let last = display.innerHTML.charAt(display.innerHTML.length - 1);
 
-            display.innerHTML = operator.dataset.operator;
-        }
-        else {
+        console.log(last);
+        console.log(display.innerHTML.slice(0, -1));
+
+        if (last != operator.dataset.operator) {
 
             display.innerHTML += operator.dataset.operator;
         }
+        else {
+            
+            display.innerHTML.slice(0, -1);
+            display.innerHTML += operator.dataset.operator;
+        }
+
+        // if () {
+
+        //     display.innerHTML = operator.dataset.operator;
+        // } else {
+
+        //     display.innerHTML += operator.dataset.operator;
+        // }
     });
 });
 
@@ -71,22 +84,26 @@ point.addEventListener("click", () => {
     if (display.innerHTML == ".") {
 
         display.innerHTML = point.dataset.point;
-    }
-    else {
+    } else {
 
         display.innerHTML += point.dataset.point;
     }
 });
 
 clear.addEventListener("click", () => {
-    display.innerHTML = 0;
+    display.innerHTML = "0";
 });
 
 clearLast.addEventListener("click", () => { // Falta contemplar la excepción en la que solo queda un número en pantalla.
 
+    if (display.innerHTML.length > 1) {
 
-    display.innerHTML = display.innerHTML.slice(0,-1);
+        display.innerHTML = display.innerHTML.slice(0, -1);
+    } 
+    else {
 
+        display.innerHTML = "0";
+    }
 });
 
 calculate.addEventListener("click", () => {
