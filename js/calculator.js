@@ -72,10 +72,7 @@ operators.forEach(operator => {
         console.log(display.innerHTML.slice(0, -1));
 
         if ((last == "+") || (last == "-") || (last == "x") || (last == "/")) {
-
-            display.innerHTML = display.innerHTML.slice(0, -1);
-            display.innerHTML += operator.dataset.operator;
-
+            // No sucede nada
         } else {
 
             display.innerHTML += operator.dataset.operator;
@@ -88,21 +85,21 @@ point.addEventListener("click", () => {
 
     let last = display.innerHTML.charAt(display.innerHTML.length - 1);
 
-    let howMany = howManyAppear(display.innerHTML, point.dataset.point);
-    console.log(howManyAppear(display.innerHTML, point.dataset.point));
+    // let howMany = howManyAppear(display.innerHTML, point.dataset.point);
+
+    // console.log(howManyAppear(display.innerHTML, point.dataset.point));
+
+    // array.forEach(element => {
+        
+    // });
 
     if (last == ".") {
-
-        display.innerHTML = display.innerHTML.slice(0, -1);
-        display.innerHTML += point.dataset.point;
-
-    } else if (howMany > 1) {
-            // No sucede nada
+        // No sucede nada
     } else if ((last == "+") || (last == "-") || (last == "x") || (last == "/")) {
             // No sucede nada
     } else {
 
-        display.innerHTML += point.dataset.point;
+        display.innerHTML = display.innerHTML + point.dataset.point;
 
     }
 });
